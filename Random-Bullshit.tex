@@ -39,7 +39,7 @@ This is utterly pure and random bullshit directly from my mind. Other sources ar
 Here is a list of current and future topics in no specific order. Further ordering may occur in a table of contents.
 
 \begin{itemize}
-	\item Fast Cellular-Automata Wave Propagation
+	\item Fast Cellular-Automata Wave Simulation
 	\item Economics of Child Birth
 	\item Analysis of 1-line Algorithmic Music in C
 	\item Identifying Hierarchical Structure in Unordered Sets
@@ -59,7 +59,14 @@ All of this random bullshit is being produced under the \emph{DBARA}%
 \footnote{``Don't be a retarded asshole'' \emph{(DBARA)} license.}
 license.
 
-\chapter{Fast Cellular-Automata Wave Propagation}
+\chapter{Fast Cellular-Automata Wave Simulation}
+
+Wave Simulation in 2-D cellular automata can briefly be described by the following formula.
+
+$\displaystyle a_{t} = dampening * ((blur * a_{t-{\Delta}t}) + velocity(a_{t-{\Delta}t},a_{t-2{\Delta}t})) $
+
+Because discrete convolutions can be converted to matrix operations by convolution of the standard basis, and because the above formula, known as a linear homogenous recurrence relation, can be solved for a closed form through eigen-decomposition of the companion matrix, computational complexity of cellular-automata wave simulation can be significantly improved. What follows is a complete breakdown of the method.
+
 \chapter{Economics of Child Birth}
 
 Evolution is generally efficient in that unnecessary processes seem to get pruned.
