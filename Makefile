@@ -14,7 +14,7 @@ Random-Bullshit.dvi: Random-Bullshit.tex
 	latex $^
 
 clean:
-	rm -f *.o *~
+	rm -f *.o *~ Random-Bullshit.dvi Random-Bullshit.aux Random-Bullshit.log
 
 wipe: clean
 	rm -f $(TARGETS)
