@@ -61,7 +61,221 @@ license.
 
 \chapter{Fast Cellular-Automata Wave Propagation}
 \chapter{Economics of Child Birth}
+
+Evolution is generally efficient in that unnecessary processes seem to get pruned.
+
+Because the pain and time components of birth have not been pruned, they must have purpose.
+
+Because this purpose is unclear, understanding its purpose is prerequisite to understanding the birthing process and how it fits into the human model as a whole.
+
+I make the assumption that pain and time of birthing can be modeled economically as a service.
+
+Assuming that it is a service, an aspect of the service is the value of its service.
+
+The measurement of the value of pain plays an important role in Tort for the recovery of losses due to pain and suffering through civil judicial procedure. I believe this sufficiently establishes that pain has real value and the expectation of remuneration after enduring pain is reasonable, and is likely essentially labor.
+
+The time component should then be equivalent in principle to the time component in any economic service cost function with a time component, in that cost typically smoothly scales with time.
+
+To approach understanding the purpose of the service, it may help to analyze the opportunity cost of the service.
+
+True service may be unclear. Time and pain may be value or cost of hidden service. Opportunity cost of hidden service in a hypothetical market where goods and services and be purchased with time and pain is equivalent to set of goods and services that can be purchased with equivalent time and pain as close in nature as possible.
+If opportunity cost is narrower in breadth than opportunity cost afforded by equivalent value in plain money then sufficient correlation between alternatives to extract some understanding about the nature of the hidden service.
+
+Here are various Categories I propose the study of cost. In all Categories the objects under study are Commodities, both goods and services. But the morphisms in each may create significantly different structures because the underlying value system or nomos are, as is hypothesized in Nomos \& Narrative, irreducible with respect to each-other. Because of this, instead of a single Commodity Category, I've opted for a category per value system.
+
+\begin{itemize}
+	\item Category of Opportunity Cost.
+	\item Category of Money (Economic Capital).
+	\item Category of Semiotics.
+	\item Category of Purpose.
+	\item Category of Cultural Capital.
+\end{itemize}
+
+Also consider the Nomos of the Bourdieu Field associated with the setting in which Pain as a captial exists. The aspect of this manner of characterization that is of specific interest is that field-specific nomos are considered irreducible with respect to another field and associted nomos, an Idea very reminicient of object isomorphism within a category. I believe the intent of Pierre Bourdieu's field concept and of Cover and Berger's Nomos was to intuitively begin to approach analysis of economics and sociology from a Categorical viewpoint. One criticism of Bourdieu's conceptualzation is the lack of conceptual clarity, leading to a wide variety of interpretations, mine being only the latest of many, but I believe, granted that I have interpreted the spirit of Bourdieu's work correctly, a Categorial approach would be a superior interpretation because clarity and specificity of concept is fundamental to Category theory. Additionally a rigorous treatment of Bourdieu's concepts can ease any previous concern for clarity, and although most mathematical frameworks do not mesh well with the social sciences, Category Theory has a natural indifference to the internal nature of the objects it studies. It is this indifference which is advantageous in the setting of social science where the objects are oft opaque to direct inspection.
+
+Opportunity cost reflects the shortcomings of money isomorphism.
+
+Real value of time and pain. Opportunity cost of real value equivalent for exposing the hidden value of a process otherwise unclear of purpose.
+
 \chapter{Analysis of 1-line Algorithmic Music in C}
+
+This project was inspired by two youtube videos:
+
+	"Experimental one-line algorithmic music - the 2nd iteration"
+	http://www.youtube.com/watch?v=qlrs2Vorw2Y
+
+	"Experimental music from very short C programs"
+	http://www.youtube.com/watch?v=GtQdIYUtAHg
+
+The musical generation of the 1-liner C program is of the form:
+
+	unsigned char transform(unsigned long t);
+
+	for(t = 0; t < (1 << N); t++) {
+		putchar(transform(t));
+	}
+
+This also assumes tha output is used to feed a PCM audio device at 8000hz 8-bit mono.
+
+This process can alternatively be described in many ways. It would first be useful to look at the loop iterator (t) in a specific
+novel way.  What at first appears to be a simple monotonically increasing sequence may prove to be more useful when written as
+a set of binary vectors b\_n each representing a single-bit slice of (t) over the entire sequence of iterations.
+
+\begin{verbatim}
+	  t  =  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15 ... 2^N-1
+	     +-------------------------------------------------------------------------
+	b_0  |  0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1 ...   1
+	     +-------------------------------------------------------------------------
+	b_1  |  0   0   1   1   0   0   1   1   0   0   1   1   0   0   1   1 ...   1
+	     +-------------------------------------------------------------------------
+	b_2  |  0   0   0   0   1   1   1   1   0   0   0   0   1   1   1   1 ...   1
+	     +-------------------------------------------------------------------------
+	b_n  |  0 x (2^n) ...   1 x (2^n) ...                                       1
+	     +-------------------------------------------------------------------------
+\end{verbatim}
+
+Taken independantly, each bit as an indepedant sequence is a square wave. Furthermore, each subsequent period is halving, and
+is incidentally orthagonal when taken as an entire set. These features readily form a very useful linear algebraic basis.
+
+The signal frequency series is (don't forget nyquist):
+
+\begin{verbatim}
+	f_n = frequency(b_n) (hz)
+	f_n = 8000 / 2^(n+1) (hz)
+	f_n = { 4000, 2000, 1000, 500, 250, 125, 62.5, 31.25, 15.625, ... } . (hz)
+\end{verbatim}
+
+After about f\_9, it is useful to consider the period of the vector.
+
+\begin{verbatim}
+	p_n = 1 / f_n (s)
+	p_n = { ..., 0.128, 0.256, 0.512, 1.024, 2.048, 4.096, 8.192, 16.384, ... } . (s)
+\end{verbatim}
+
+To select a tone and duration, it is simply a matter of selecting the corresponding bit vectors and composing the two in some manner.
+Selction is via an AND mask.
+
+To select the 1000hz tone at bit vector b\_2, calculate function b\_2(t) = (t>>2)\&1
+To select a note duration of approximately 1/4th second we calculate:
+
+\begin{verbatim}
+       2^(n+1) = 8000 * 1/4
+   n+1 log_2 2 = log_2 2000
+           n+1 = log_2 2000
+             n = log_2 2000 - 1
+             n ~ 11 - 1 ~ 10
+\end{verbatim}
+
+Then we select b\_10 and calculate function b\_10(t) = (t>>10)\&1
+
+An entire b\_n vector could be composed by b\_n = \{ b\_n(0), ..., b\_n(N-1) \}
+
+Now, the signals can be composed by simple binary amplitude modulation (AM) using either multiplication operation (*) or the bitwise AND (\&)
+operation (provided that the bits are correctly aligned of course). We did happen to align them correctly above. This correct bitwise alignment
+could be done via normal matrix row-swap operations on the binary vector (t) instead of the bitwise shift operation (>>). Additionally, we
+should select a volume level. Assuming the output is unsigned 8-bit, we can simply shift the modulated signal by up to 7 positions to the left.
+
+So we get the final signal generation function:
+
+\begin{verbatim}
+	b_2_t = (t>>2) & 1   // select tone signal
+	b_10_t = (t>>10) & 1 // select duration signal
+	o = b_10_t & b_2_t   // modulate duration signal by tone signal
+\end{verbatim}
+	o <<= 6              // select volume
+
+Reduction of the above produces this compact form:
+
+\begin{verbatim}
+	o = ( (t >> 2) & (t >> 10) & 1 ) << 6
+\end{verbatim}
+
+Further reduction:
+
+\begin{verbatim}
+	o = (t << 4) & (t >> 4) & 64
+\end{verbatim}
+
+The same process can be described as a dot-product operation with (s), the selection vector, operating on (t) as s.t,
+and then another dot-product operation (c), the composition vector, also operating on (t) as c.t, and then finally the
+volume scalar (v), so that the complete modulation is v(s.t)(c.t).
+
+At this point, this becomes an interesting point of study for Kolmogorov complexity and the computation of music.
+
+Just given about 9 tones and 8 time intervals, it would be easy to sequence somewhat novel audio scores, but we're going to continue
+the breakdown of this basis to improve upon these numeric tools.
+
+Given that the initial basis b\_n is orthagonal, but of row rank significantly lower than its column rank, it would be of moderate interest
+to see if a complete linear independant orthagonal basis of rank 2\^N could be generated from the original basis in some simple way. Given this,
+then in an albiet rather trival manner, any sequence of length 2\^N could be managed in a rather long "1-liner". But then provided sufficient
+knowledge in the theory of data compression, an optimization between a minimal vector subset and a maximal signal approximation could be reached
+using only the most basic of algebraic operations.
+
+Construction of a complete orthagonal basis of rank 2\^N inituitively can be imagined to be by time-scaling of any of the original basis. One
+additional fact to remember is that each of the square-waves are self-similar and only differ in their time-scale. Also, provided that the total
+time interval of a complete sequence aligns on the period boundary of every basis vector, then the complete basis will retain orthagonality.
+So only a single representative vector from the basis is needed to generate an entire basis of rank 2\^N provided a simple time-scaling function
+can be determined. Firstly, selection of the basis vector with minimal period is simply:
+
+\begin{verbatim}
+	b_0(t) = (t & 1)
+\end{verbatim}
+
+To scale a function in range by a constant factor of (k) would be k*f(n), while to scale a function in domain by the same factor would be f(n/k).
+So then it should follow that the period of the basis vector b\_0 can be expanded simply by b\_0(t/(k+1)) = (floor(t/(k+1)) \& 1). The original b\_0 square
+wave is an odd function, analogous to the sine function, so therefore given k = \{ 0, ..., 2\^N-1 \} then the complete basis can be generated by:
+
+\begin{verbatim}
+	b'_k = { b_0(2 * t / (k + 1)) } = { floor(2 * t / (k + 1)) & 1 }
+\end{verbatim}
+
+With the frequency of each basis vector:
+
+\begin{verbatim}
+	f'_k = frequency(b'_k) (hz)
+	f'_k = (8000/k) mod 8000 (hz)
+	f'_k = { 0, 4000, 2666, 2000, 1600, 1333, 1142, 888, 800, 727, 666, ... } . (hz)
+\end{verbatim}
+
+Unfortunately, unlike the DST, the discrete implementations of this basis are not orthagonal because of aliasing problems at period boundaries
+of many of the square waves.  When the wave frequency does not divide the number of discrete samples in the signal, then an imbalance in the
+distribution of the high and low states of the signal. Even tho this does not mean the basis is not linear independant, the basis loses some of
+the simplicities in decomposition calculations. Orthagonalization of this basis can be performed at the cost of significant complexity. A famous
+compromise between the hilbert square-wave basis and the advantages of orthagonality is the "Haar Wavelet".
+
+Trying to revise the original modulation scheme with a target frequency of 2600hz, we get the following:
+
+\begin{verbatim}
+	k = 8000/2600 ~ 3.08
+	b'_3.08 = b_0(2*t/(3.08+1)) = floor(2*t/(3.08+1))&1 = floor(t*2/4.08)&1 // select tone
+	b_10_t = (t>>10) & 1 // select duration signal
+	o = b_10_t & b'3.08  // modulate duration signal by tone signal
+	o <<= 6              // select volume
+\end{verbatim}
+
+One may notice that when a frequency that is significantly misaligned with the total signal period is selected, many artifacts arise
+in the output signal.
+
+Reduction of the above produces this compact form:
+
+\begin{verbatim}
+	o = ( ((t>>10)&1) & (((int)floor(t*2.0/4.08))&1) ) << 6
+\end{verbatim}
+
+Given a number of output signals o = \{o\_k\}, these signals can then be composed together with a few possible
+methods, namely binary XOR (\^), binary OR (|) and arithmetic addition (+), each with various auditory effects.
+Namely, addition runs the risk of clipping as the mean signal power approaches the range limit of the output
+channel (in this case 8-bit or 255), OR may saturate all of the output bits if the signal becomes too complex,
+and XOR may cancel out common-mode signals of similar power.
+
+\begin{verbatim}
+	o' =  o_0 + o_1 + ... + O_n
+	o' =  o_0 ^ o_1 ^ ... ^ O_n
+	o' =  o_0 | o_1 | ... | O_n
+\end{verbatim}
+
+More shit to come, obviously.
+
 \chapter{Identifying Hierarchical Structure in Unordered Sets}
 \chapter{Password Cracking as a Cover Problem}
 \chapter{Observations of SMILES and Some Ideas}
@@ -84,3 +298,4 @@ Various flavors of \emph{Zots} can be enumerated.
 $K^N$ or $\displaystyle\sum^{\infty}_{n=1} a_n$
 
 \end{document}
+
