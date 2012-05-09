@@ -38,7 +38,7 @@ This is utterly pure and random bullshit directly from my mind. Other sources ar
 
 Here is a list of current and future topics in no specific order. Further ordering may occur in a table of contents.
 
-\begin{itemize}
+\begin{enumerate}
 	\item Fast Cellular-Automata Wave Simulation
 	\item Economics of Child Birth
 	\item Analysis of 1-line Algorithmic Music in C
@@ -47,8 +47,10 @@ Here is a list of current and future topics in no specific order. Further orderi
 	\item Observations of SMILES and Some Ideas
 	\item Easy File Correlation Using Standard System Tools
 	\item Reverse-Compiling with Parametric Grammars
-	\item Ray Tracing Sound and the Analysis of Mechanical Resonance of 2-D Surfaces
-\end{itemize}
+	\item \label{item:reso} Mechanical Resonance and Ray Tracing Sound%
+\footnote{Item~\ref{item:reso} An analysis of mechanical resonance and standing wave patterns on 2-D surfaces using insight from sound ray tracing techniques.}
+\end{enumerate}
+
 
 \subsection{About Me}
 
@@ -295,22 +297,29 @@ More shit to come, obviously.
 \chapter{Password Cracking as a Cover Problem}
 \chapter{Observations of SMILES and Some Ideas}
 \chapter{Reverse-Compiling with Parametric Grammars}
+\chapter{Easy File Correlation Using Standard System Tools}
+\chapter{Mechanical Resonance and Ray Tracing Sound}
 
-\subsection{Enumerated Zots Candy}
+Here is some nonsense right now.
 
-Various flavors of \emph{Zots} can be enumerated.
+\newcommand{\edge}{\overrightarrow}
+\newcommand{\cod}{\mathop{\mathrm{cod}}}
+\newcommand{\dom}{\mathop{\mathrm{dom}}}
 
-\begin{enumerate}
-	\item Apple
-	\item Watermelon
-	\item Cherry
-	\item Grape
-	\item Orange
-	\item \label{item:lemon} Lemon%
-\footnote{Item~\ref{item:lemon} (``Lemon'') is disgusting}
-\end{enumerate}
-
-$K^N$ or $\displaystyle\sum^{\infty}_{n=1} a_n$
+$
+\displaystyle
+\sin { \left| \mathring{r} \right| \left( 2 \pi t + \omega + \theta \right) } \\
+\cod(r_k) = \dom(r_1) \\
+\mathring{r} = \edge{ _{1}r_k } = \edge { r_1 } \circ \edge{r_2} \circ \cdots \circ \edge{ r_{k-1} } \circ \edge{r_k} \\
+\left| \mathring { r }  \right|
+= \left| \edge { _{ 1 }r_{ k } }  \right|
+= \left| \edge{r_1} \circ \edge {r_2} \circ \cdots \circ \edge { r_{k-1} } \circ \edge{r_k} \right|
+= \sum _{ i=1 }^{ k } \left| \edge { r_{ i } }  \right| \\
+\edge { _{1}r_0 } = \mathring {\emptyset} \\
+\left| \edge { _{1}r_0 } \right| = \left| \mathring{\emptyset} \right| = 0 \\
+a_j=\dom(r_i) \\
+\left< a_j \right> = \left\{ \left| \edge { _{1}r_{i-1} } \right| \left| { \atop } \right. a_j=\dom(r_i) \right\} 
+$
 
 \end{document}
 
