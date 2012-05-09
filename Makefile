@@ -12,6 +12,7 @@ Random-Bullshit.pdf: Random-Bullshit.dvi
 
 Random-Bullshit.dvi: Random-Bullshit.tex
 	latex $^
+	latex $^
 
 clean:
 	rm -f *.o *~ Random-Bullshit.dvi Random-Bullshit.aux Random-Bullshit.log
