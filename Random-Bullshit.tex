@@ -97,7 +97,11 @@ The measurement of the financial capital value of pain over time plays an import
 To approach understanding the purpose of the service, it may help to analyze the opportunity cost of the service.
 
 True service may be unclear. Time and pain may be value or cost of hidden service. Opportunity cost of hidden service in a hypothetical market where goods and services and be purchased with time and pain is equivalent to set of goods and services that can be purchased with equivalent time and pain as close in nature as possible.
-If opportunity cost is narrower in breadth than opportunity cost afforded by equivalent value in plain money then sufficient correlation between alternatives to extract some understanding about the nature of the hidden service.
+If opportunity cost is narrower in breadth than opportunity cost afforded by equivalent value in plain money then sufficient correlation between
+alternatives to extract some understanding about the nature of the hidden service. Intuitively, breadth of the opportunity set is a variance
+measurement, where as the root mean square of the opportunity set financial cost is the plain money approximation in dollar value. The
+hidden service may then be modeled by the standard uncertainty product, a probability distribution product over the correlated
+wants and needs the opportunity set addresses, which in the standard model is simply reffered to as ${\hbar}$, with units $P{\cdot}h/rads$, an angular momentum of an economic actor. In plain language, this would be equivalent to the obvious statement that people are individuals with individual wants and needs, and while these are not absolutely clear, we can call this a direction vector or a probability wave-function, an old idea.
 
 Here are various Categories I propose the study of cost. In all Categories the objects under study are Commodities, both goods and services. But the morphisms in each may create significantly different structures because the underlying value system or nomos are, as is hypothesized in Nomos \& Narrative, irreducible with respect to each-other. Because of this, instead of a single Commodity Category, I've opted for a category per value system.
 
@@ -148,9 +152,9 @@ The musical generation of the 1-liner C program is of the form:
 
 	unsigned char transform(unsigned long t);
 
-	for(t = 0; t < (1 << N); t++) {
+	for(t = 0; t < (1 << N); t++) \{
 		putchar(transform(t));
-	}
+	\}
 
 This also assumes tha output is used to feed a PCM audio device at 8000hz 8-bit mono.
 
@@ -284,7 +288,9 @@ Trying to revise the original modulation scheme with a target frequency of 2600h
 
 \begin{verbatim}
 	k = 8000/2600 ~ 3.08
-	b'_3.08 = b_0(2*t/(3.08+1)) = floor(2*t/(3.08+1))&1 = floor(t*2/4.08)&1 // select tone
+	b'_3.08 = b_0(2*t/(3.08+1))
+		= floor(2*t/(3.08+1))&1
+		= floor(t*2/4.08)&1 // select tone
 	b_10_t = (t>>10) & 1 // select duration signal
 	o = b_10_t & b'3.08  // modulate duration signal by tone signal
 	o <<= 6              // select volume
@@ -340,6 +346,10 @@ $
 a_j=\dom(r_i) \\
 \left< a_j \right> = \left\{ \ \left| \edge { _{1}r_{i-1} } \right| \ \left| \genfrac{}{}{}{}{}{} \right. a_j=\dom(r_i) \quad \forall i ( 0 \le i \le k ) \right\} 
 $
+
+Other things to work on are the scalar fields and wave propagation is energy transfer without spacial movement.
+
+Hypercubes with binary addresses and shortest path distance as the hamming distance should be related to finding a permutation of addresses through the entire space, with differential distance steps being 1 or at least a constant value, then this should be able to be embedded into a continuous space, to find a continuous-path analog. In 2-space this gives rise to both $e^{\pi i}$ and the $ A^\theta $ forms of 2-d rotation, so n-d rotation should follow from here, which may lead to smooth forms of peano-curve-like functions, which give rise to complete and smooth n-spherical-surface space traversal.
 
 \end{document}
 
